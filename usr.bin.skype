@@ -69,7 +69,8 @@
 
   deny @{PROC}/sys/** mrwk,
   deny @{PROC}/*/task/ r,
-  deny @{PROC}*/net/arp r,
+  deny @{PROC}/*/net/arp r,
+  deny @{PROC}/*/net/dev r,
   deny /sys/** mrwk,
 
   deny /usr/bin/xdg-open x,
