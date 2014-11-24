@@ -80,8 +80,15 @@
   deny /etc/xdg/sni-qt.conf r,
   deny /tmp/sni-qt_skype*/ w,
 
+  deny /var/cache/fontconfig/ w,
+  deny /var/cache/fontconfig/** w,
+  deny @{HOME}/.cache/fontconfig/ w,
+  deny @{HOME}/.cache/fontconfig/** w,
+
   deny network inet6 stream,
   deny network inet6 dgram,
+  deny network netlink,
+  deny unix (connect, receive, send) type=stream peer=(addr="@/tmp/dbus-*"),
   deny dbus,
   deny /run/dbus/system_bus_socket rw,
 }
