@@ -36,7 +36,7 @@
 
   # The directories below are specific to /home/madars (both "homema"
   # part and hex suffix). Look for AppArmor errors and adjust
-  # accordingly. 
+  # accordingly.
 
   /tmp/qtsingleapp-homema-8f42-3e8-lockfile rwk,
   /tmp/qtsingleapp-homema-8f42-3e8 rw,
@@ -63,6 +63,7 @@
   deny /etc/host.conf r,
   deny /etc/nsswitch.conf r,
   deny /etc/machine-id r,
+  deny /etc/gai.conf r,
 
   deny /usr/share/poppler/** r,
   deny /usr/share/icons/** k,
@@ -71,6 +72,7 @@
   deny @{PROC}/*/task/ r,
   deny @{PROC}/*/net/arp r,
   deny @{PROC}/*/net/dev r,
+  deny @{PROC}/*/status r,
   deny /sys/** mrwk,
 
   deny /usr/bin/xdg-open x,
@@ -88,8 +90,11 @@
   deny network inet6 stream,
   deny network inet6 dgram,
   deny network netlink,
-  deny unix (connect, receive, send) type=stream peer=(addr="@/tmp/dbus-*"),
+
+  # Remove the deny from the lines below if you intend to use
+  # Skype4Py, which requires dbus:
   deny dbus,
+  deny unix (connect, receive, send) type=stream peer=(addr="@/tmp/dbus-*"),
   deny /run/dbus/system_bus_socket rw,
 
   # Site-specific additions and overrides. See local/README for details.
@@ -101,4 +106,8 @@
   #
   # @{HOME}/containers/dot-Skype/ rw,
   # @{HOME}/containers/dot-Skype/** rwk,
+  #
+  # Also if your Trolltech.conf is symlinked it will need adjustment as well, e.g.
+  # @{HOME}/somepath/Trolltech.conf rk,
+  #
 }
