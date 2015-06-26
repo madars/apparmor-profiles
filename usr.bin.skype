@@ -38,8 +38,8 @@
   # part and hex suffix). Look for AppArmor errors and adjust
   # accordingly.
 
-  /tmp/qtsingleapp-homema-8f42-3e8-lockfile rwk,
-  /tmp/qtsingleapp-homema-8f42-3e8 rw,
+  /tmp/qtsingleapp-homema-93da-3e8-lockfile rwk,
+  /tmp/qtsingleapp-homema-93da-3e8 rw,
 
   # Skype 4.3
   /tmp/skype-** rwk,
@@ -54,6 +54,7 @@
   # silence warnings
   deny @{HOME}/.mozilla/ r,
   deny @{HOME}/.config/Trolltech.conf w,
+  deny @{HOME}/.kde/share/config/kioslaverc r,
 
   deny /etc/ssl/** r,
   deny /etc/resolvconf/resolv.conf r,
@@ -109,5 +110,6 @@
   #
   # Also if your Trolltech.conf is symlinked it will need adjustment as well, e.g.
   # @{HOME}/somepath/Trolltech.conf rk,
+  # deny @{HOME}/somepath/Trolltech.conf w,
   #
 }
